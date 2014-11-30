@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var breedLabel: UILabel!
+    @IBOutlet weak var randomFactLabel: UILabel!
     
     var myTigers:[Tiger] = []
     var currentIndex = 0
@@ -29,6 +30,8 @@ class ViewController: UIViewController {
         
         myTiger.chuff()
         myTiger.chuffManyTimes(3)
+        myTiger.chuffManyTimes(3, isLoud: false)
+        myTiger.age = myTiger.ageinTigerYears(myTiger.age)
         
         myTigers.append(myTiger)
         println("My tiger's name is : \(myTiger.name) and its breed is \(myTiger.breed) and the image is \(myTiger.image)")
@@ -37,6 +40,7 @@ class ViewController: UIViewController {
         nameLabel.text = myTiger.name
         ageLabel.text = "\(myTiger.age)"
         breedLabel.text = "\(myTiger.breed)"
+        self.randomFactLabel.text = myTiger.randomFact()
         
         currentIndex = 0
         
@@ -45,18 +49,21 @@ class ViewController: UIViewController {
         secondTiger.breed = "Indochinese Tiger"
         secondTiger.age = 2
         secondTiger.image = UIImage(named: "Tiger1.jpeg")
+        secondTiger.age = secondTiger.ageinTigerYears(secondTiger.age)
         
         var thirdTiger = Tiger()
         thirdTiger.name = "Jacob"
         thirdTiger.breed = "Malayam Tiger"
         thirdTiger.age = 3
         thirdTiger.image = UIImage(named: "Tiger3.jpeg")
+        thirdTiger.age = thirdTiger.ageinTigerYears(thirdTiger.age)
         
         var fourthTiger = Tiger()
         fourthTiger.name = "Spar"
         fourthTiger.breed = "Siberian Tiger"
         fourthTiger.age = 5
         fourthTiger.image = UIImage(named: "Tiger4.jpeg")
+        fourthTiger.age = fourthTiger.ageinTigerYears(fourthTiger.age)
         
         myTigers += [secondTiger, thirdTiger, fourthTiger]
 }
@@ -83,6 +90,7 @@ class ViewController: UIViewController {
             self.nameLabel.text = tiger.name
             self.ageLabel.text = "\(tiger.age)"
             self.breedLabel.text = tiger.breed
+            self.randomFactLabel.text = tiger.randomFact()
             
             }, completion: { (finished:Bool) -> () in })
     }
