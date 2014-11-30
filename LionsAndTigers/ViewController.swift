@@ -27,6 +27,9 @@ class ViewController: UIViewController {
         myTiger.breed = "Bengel"
         myTiger.image = UIImage(named: "Tiger2.jpeg")
         
+        myTiger.chuff()
+        myTiger.chuffManyTimes(3)
+        
         myTigers.append(myTiger)
         println("My tiger's name is : \(myTiger.name) and its breed is \(myTiger.breed) and the image is \(myTiger.image)")
         
@@ -64,6 +67,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func nextBarButtonItemPressed(sender: UIBarButtonItem) {
+        println("UIBarButtonItem is \(sender)")
+        
         var randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
         while currentIndex == randomIndex {
             randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
