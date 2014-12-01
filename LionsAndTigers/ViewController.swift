@@ -21,6 +21,9 @@ class ViewController: UIViewController {
     var lions:[Lion] = []
     
     var currentIndex = 0
+    
+    // Tuple to combine current setup information
+    var currentAnimal = (species:"Tiger", index:0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,10 +99,48 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func updateAnimal() {
+        switch currentAnimal {
+        case ("Tiger", _):
+            let randomIndex = Int(arc4random_uniform(UInt32(lions.count)))
+            currentAnimal = ("Lion", randomIndex)
+        default:
+            let randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+            currentAnimal = ("Tiger", randomIndex)
+        }
+    }
 
+    func updateView() {
+        // Add animation for transition
+        UIView.transitionWithView(self.view, duration: 1, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            if self.currentAnimal.species == "Tiger" {
+                let tiger = self.myTigers[self.currentAnimal.index]
+                self.myImageView.image = tiger.image
+                self.nameLabel.text = tiger.name
+                self.ageLabel.text = "\(tiger.age)"
+                self.breedLabel.text = tiger.breed
+                self.randomFactLabel.hidden = false
+                self.randomFactLabel.text = tiger.randomFact()
+            } else if self.currentAnimal.species == "Lion" {
+                let lion = self.lions[self.currentAnimal.index]
+                self.myImageView.image = lion.image
+                self.nameLabel.text = lion.name
+                self.ageLabel.text = "\(lion.age)"
+                self.breedLabel.text = lion.subspecies
+                self.randomFactLabel.hidden = true
+            }
+        }, completion: { (finished:Bool) -> () in })
+    }
+    
     @IBAction func nextBarButtonItemPressed(sender: UIBarButtonItem) {
         println("UIBarButtonItem is \(sender)")
-        
+        //updateTiger()
+        updateAnimal()
+        updateView()
+    }
+    
+    func updateTiger() {
         var randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
         while currentIndex == randomIndex {
             randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
