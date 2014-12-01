@@ -17,11 +17,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var randomFactLabel: UILabel!
     
     var myTigers:[Tiger] = []
+    
+    var lions:[Lion] = []
+    
     var currentIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Create instances from struct
         var myTiger = Tiger()
         myTiger.name = "Tigger"
         myTiger.age = 3
@@ -66,6 +71,25 @@ class ViewController: UIViewController {
         fourthTiger.age = fourthTiger.ageinTigerYears(fourthTiger.age)
         
         myTigers += [secondTiger, thirdTiger, fourthTiger]
+        
+        // Create instances from class
+        var lion = Lion()
+        lion.age = 4
+        lion.isAlphaMale = false
+        lion.image = UIImage(named: "Lion1.jpeg")
+        lion.name = "Korea"
+        lion.subspecies = "West African"
+        
+        println("Lion's age is \(lion.age) and the lion's name is \(lion.name) and the lion's subspecies is \(lion.subspecies)")
+        
+        var lioness = Lion()
+        lioness.age = 3
+        lioness.isAlphaMale = false
+        lioness.image = UIImage(named: "Lion2.jpeg")
+        lioness.name = "Sarabi"
+        lioness.subspecies = "Barbarian"
+        
+        self.lions += [lion, lioness]
 }
 
     override func didReceiveMemoryWarning() {
