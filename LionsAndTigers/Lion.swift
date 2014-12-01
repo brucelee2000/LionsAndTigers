@@ -15,4 +15,14 @@ class Lion {
     var image = UIImage(named: "")
     var name = ""
     var subspecies = ""
+    
+    func roar() {
+        println("Lion: Roar Roar!")
+    }
+
+    // In the class, we can access property
+    // In the struct, we cannot access property
+    func changeTOAlphaMale() {
+        self.isAlphaMale = true
+    }
 }
