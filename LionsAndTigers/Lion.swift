@@ -25,4 +25,16 @@ class Lion {
     func changeTOAlphaMale() {
         self.isAlphaMale = true
     }
+    
+    func randomFact() -> String {
+        var randomFact:String
+        
+        if isAlphaMale {
+            randomFact = "Male lions are easy to recognize to their distinct smell."
+        } else {
+            randomFact = "Female lions form the stable social unit."
+        }
+        
+        return randomFact
+    }
 }

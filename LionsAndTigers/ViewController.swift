@@ -101,6 +101,16 @@ class ViewController: UIViewController {
         lioness.roar()
         
         self.lions += [lion, lioness]
+        
+        var lionCub = LionCub()
+        lionCub.age = 1
+        lionCub.name = "Simba"
+        lionCub.image = UIImage(named: "LionCub1.jpeg")
+        lionCub.subspecies = "Masai"
+        
+        println("LionCub should roar after this statement")
+        lionCub.roar()
+        lionCub.rubLionCubBelly()
 }
 
     override func didReceiveMemoryWarning() {
@@ -128,7 +138,7 @@ class ViewController: UIViewController {
                 self.nameLabel.text = tiger.name
                 self.ageLabel.text = "\(tiger.age)"
                 self.breedLabel.text = tiger.breed
-                self.randomFactLabel.hidden = false
+                //self.randomFactLabel.hidden = false
                 self.randomFactLabel.text = tiger.randomFact()
             } else if self.currentAnimal.species == "Lion" {
                 let lion = self.lions[self.currentAnimal.index]
@@ -136,7 +146,8 @@ class ViewController: UIViewController {
                 self.nameLabel.text = lion.name
                 self.ageLabel.text = "\(lion.age)"
                 self.breedLabel.text = lion.subspecies
-                self.randomFactLabel.hidden = true
+                //self.randomFactLabel.hidden = true
+                self.randomFactLabel.text = lion.randomFact()
             }
         }, completion: { (finished:Bool) -> () in })
     }
